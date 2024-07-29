@@ -24,7 +24,7 @@ Implemente a lógica para adicionar uma nova tarefa à lista quando o usuário e
 
 Implemente a lógica para exibir todas as tarefas atualmente na lista quando o usuário escolher essa opção.
 
-### Passo 7: Marcar Tarefa como Concluída
+### Passo 7: Marcar Task como Concluída
 
 Implemente a lógica para permitir que o usuário marque uma tarefa como concluída e a remova da lista quando escolher essa opção.
 
