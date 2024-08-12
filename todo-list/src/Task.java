@@ -18,9 +18,9 @@ public class Task {
 
     @Override
     public String toString() {
-        return "\nTarefa= \n" + taskName +
-                "\nDescrição= \n" + description +
-                "\nEstado= \n" + status +
+        return "\nNome: " + taskName +
+                "\nDescrição: " + description +
+                "\nEstado: " + status +
                 "\n--------------------------------------------------";
     }
 
