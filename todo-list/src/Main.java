@@ -42,11 +42,26 @@ public class Main {
                     System.out.println();
                     break;
                 case "3":
-                    System.out.println("- Digite o numero da tarefa que gostaria de editar.");//Ediar tarefas
+                    System.out.println("- Digite o numero da tarefa que gostaria de editar.");
                     int nunTarefa = scanner.nextInt();
                     // Deixar para fazer por ultimo, depois do apagar
                 case "4":
-                    System.out.println();//Apagar tarefas (PROXIMO PASSO)
+                    if (tasks.size() == 0) {
+                        System.out.printf(" = Não existem tarefas para serem apagadas = \n - Digite 2 para adicionar uma tarefa ou...");
+                    } else {
+                        System.out.println();
+                        System.out.println("- Digite o numero da tarefa que deseja aparar.");
+                        int n = scanner.nextInt() - 1;
+                        scanner.nextLine();
+                        if (n >= tasks.size()){
+                            System.out.println("= Opção Inválida =");
+                        } else {
+                            tasks.remove(n);
+                            System.out.println("- Tarefa apagada com sucesso!");
+                            System.out.println();
+                        }
+                        }
+                    break;
                 case "5":
                     return;
                 default:
