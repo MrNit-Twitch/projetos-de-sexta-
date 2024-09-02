@@ -41,19 +41,37 @@ public class Main {
                     System.out.println("- Tarefa adicionada a sua lista de tarefas.");
                     System.out.println();
                     break;
-                case "3":
+                case "3": //ESTAMOS AQUI
                     System.out.println("- Digite o numero da tarefa que gostaria de editar.");
-                    int nunTarefa = scanner.nextInt();
-                    // Deixar para fazer por ultimo, depois do apagar
+                    if (tasks.size() == 0) {
+                        System.out.printf(" = Não existem tarefas para serem editadas = \n - Digite 2 para adicionar uma tarefa ou...");
+                    } else {
+                        System.out.println();
+                        System.out.println("- Digite o numero da tarefa que deseja editar.");
+                        int n = scanner.nextInt() - 1;
+                        scanner.nextLine();
+                        if (n < 0 || n >= tasks.size()){
+                            System.out.println("= Opção Inválida =");
+                        } else {
+                            System.out.println("- Digite o número referente a opção desejada alterar e pressione ENTER.");
+                            System.out.println("Opção 1: Editar NOME");
+                            System.out.println("Opção 2: Editar DESCRÇÃO");
+                            System.out.println("Opção 3: Atualizar Status");
+                            //Continuar daqui, precisa selecionar cada item e alterar (itens da opção 2)
+                            tasks.remove(n);
+                            System.out.println("- Tarefa editada com sucesso!");
+                            System.out.println();
+                        }
+                    }
                 case "4":
                     if (tasks.size() == 0) {
                         System.out.printf(" = Não existem tarefas para serem apagadas = \n - Digite 2 para adicionar uma tarefa ou...");
                     } else {
                         System.out.println();
-                        System.out.println("- Digite o numero da tarefa que deseja aparar.");
+                        System.out.println("- Digite o numero da tarefa que deseja apagar.");
                         int n = scanner.nextInt() - 1;
                         scanner.nextLine();
-                        if (n >= tasks.size()){
+                        if (n < 0 || n >= tasks.size()){
                             System.out.println("= Opção Inválida =");
                         } else {
                             tasks.remove(n);
