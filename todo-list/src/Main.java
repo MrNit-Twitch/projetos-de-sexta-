@@ -41,10 +41,11 @@ public class Main {
                     System.out.println("- Tarefa adicionada a sua lista de tarefas.");
                     System.out.println();
                     break;
-                case "3": //ESTAMOS AQUI
-                    System.out.println("- Digite o numero da tarefa que gostaria de editar.");
+                case "3":
                     if (tasks.size() == 0) {
                         System.out.printf(" = Não existem tarefas para serem editadas = \n - Digite 2 para adicionar uma tarefa ou...");
+                        System.out.println();
+                        break;
                     } else {
                         System.out.println();
                         System.out.println("- Digite o numero da tarefa que deseja editar.");
@@ -53,16 +54,35 @@ public class Main {
                         if (n < 0 || n >= tasks.size()){
                             System.out.println("= Opção Inválida =");
                         } else {
-                            System.out.println("- Digite o número referente a opção desejada alterar e pressione ENTER.");
+                            System.out.println("- Digite o número referente a opção que deseja alterar e pressione ENTER.");
+                            System.out.println();
                             System.out.println("Opção 1: Editar NOME");
                             System.out.println("Opção 2: Editar DESCRÇÃO");
                             System.out.println("Opção 3: Atualizar Status");
-                            //Continuar daqui, precisa selecionar cada item e alterar (itens da opção 2)
-                            tasks.remove(n);
-                            System.out.println("- Tarefa editada com sucesso!");
+                            int n2 = scanner.nextInt();
                             System.out.println();
+                            if (n2 == 1){ // CONTINUAR DAQUI
+                                System.out.println("Digite o novo nome para a tarefa");
+                                //Adicionar cod opara alterar tarefas. Ex: var taskName = scanner.nextLine();
+                                System.out.println("= Tarefa editada com sucesso! =");
+                                System.out.println();
+                            } else if (n2 ==2) {
+                                System.out.println("Digite a nova descrição para a tarefa");
+                                //Adicionar cod opara alterar tarefas. Ex: var taskName = scanner.nextLine();
+                                System.out.println("= Tarefa editada com sucesso! =");
+                                System.out.println();
+                            } else if (n2 == 3) {
+                                System.out.println("Digite o novo status da tarefa");
+                                //Adicionar cod opara alterar tarefas. Ex: var taskName = scanner.nextLine();
+                                System.out.println("= Tarefa editada com sucesso! =");
+                                System.out.println();
+                            } else {
+                                System.out.println("= Opção Inválida =");
+                                //Fazer voltar para o menu anterior
+                            }
                         }
                     }
+                    break;
                 case "4":
                     if (tasks.size() == 0) {
                         System.out.printf(" = Não existem tarefas para serem apagadas = \n - Digite 2 para adicionar uma tarefa ou...");
