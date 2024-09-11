@@ -60,25 +60,26 @@ public class Main {
                             System.out.println("Opção 2: Editar DESCRÇÃO");
                             System.out.println("Opção 3: Atualizar Status");
                             int n2 = scanner.nextInt();
-                            System.out.println();
-                            if (n2 == 1){ // CONTINUAR DAQUI
+                            if (n2 == 1){ // CONTINUAR DAQUI, ir para a opção 3
                                 System.out.println("Digite o novo nome para a tarefa");
-                                //Adicionar cod opara alterar tarefas. Ex: var taskName = scanner.nextLine();
+                                tasks.get(n).setTaskName(scanner.nextLine());
                                 System.out.println("= Tarefa editada com sucesso! =");
                                 System.out.println();
                             } else if (n2 ==2) {
                                 System.out.println("Digite a nova descrição para a tarefa");
-                                //Adicionar cod opara alterar tarefas. Ex: var taskName = scanner.nextLine();
+                                tasks.get(n).setDescription(scanner.nextLine());
                                 System.out.println("= Tarefa editada com sucesso! =");
                                 System.out.println();
                             } else if (n2 == 3) {
                                 System.out.println("Digite o novo status da tarefa");
-                                //Adicionar cod opara alterar tarefas. Ex: var taskName = scanner.nextLine();
+                                //não esta lendo o scanner
+                                String newStatus = scanner.nextLine();
+                                tasks.get(n).setStatus(newStatus);
                                 System.out.println("= Tarefa editada com sucesso! =");
                                 System.out.println();
                             } else {
                                 System.out.println("= Opção Inválida =");
-                                //Fazer voltar para o menu anterior
+                                break;
                             }
                         }
                     }
