@@ -9,6 +9,8 @@ public class Main {
         System.out.println("\"- Olá, o que você gostaria de fazer?\""); // \ para adicionar simbolos como as aspas duplas em uma string.
         System.out.println();
 
+        // CONTINUAR AQUI criar um arquivo CSV e salvar as Tasks nele (tarefas_savefile.csv)
+
         var option = "";//Variavel vazia onde posso colocar o scanner para o menu opções
 
         List<Task> tasks = new ArrayList<>(); //As listas de tarefas são salvas aqui;
@@ -19,7 +21,7 @@ public class Main {
             switch (option) {
                 case "1":
                     if (tasks.size() == 0) {
-                        System.out.printf(" = Você ainda não adicionou nenhuma tarefa... = \n - Digite 2 para adicionar uma tarefa ou...");
+                        System.out.printf("= Você ainda não adicionou nenhuma tarefa... = \n- Digite 2 para adicionar uma tarefa ou...\n");
                     } else {
                         System.out.println();
                         for (int i = 0; i < tasks.size(); i++) {
@@ -43,8 +45,7 @@ public class Main {
                     break;
                 case "3":
                     if (tasks.size() == 0) {
-                        System.out.printf(" = Não existem tarefas para serem editadas = \n - Digite 2 para adicionar uma tarefa ou...");
-                        System.out.println();
+                        System.out.printf("= Não existem tarefas para serem editadas = \n- Digite 2 para adicionar uma tarefa ou...\n");
                         break;
                     } else {
                         System.out.println();
@@ -60,22 +61,29 @@ public class Main {
                             System.out.println("Opção 2: Editar DESCRÇÃO");
                             System.out.println("Opção 3: Atualizar Status");
                             int n2 = scanner.nextInt();
-                            if (n2 == 1){ // CONTINUAR DAQUI, ir para a opção 3
+                            if (n2 == 1){
                                 System.out.println("Digite o novo nome para a tarefa");
-                                tasks.get(n).setTaskName(scanner.nextLine());
+                                scanner.nextLine();
+                                String newTask = scanner.nextLine();
+                                tasks.get(n).setTaskName(newTask);
                                 System.out.println("= Tarefa editada com sucesso! =");
+                                System.out.println();
                                 System.out.println();
                             } else if (n2 ==2) {
                                 System.out.println("Digite a nova descrição para a tarefa");
-                                tasks.get(n).setDescription(scanner.nextLine());
+                                scanner.nextLine();
+                                String newDescription = scanner.nextLine();
+                                tasks.get(n).setDescription(newDescription);
                                 System.out.println("= Tarefa editada com sucesso! =");
+                                System.out.println();
                                 System.out.println();
                             } else if (n2 == 3) {
                                 System.out.println("Digite o novo status da tarefa");
-                                //não esta lendo o scanner
+                                scanner.nextLine();
                                 String newStatus = scanner.nextLine();
                                 tasks.get(n).setStatus(newStatus);
                                 System.out.println("= Tarefa editada com sucesso! =");
+                                System.out.println();
                                 System.out.println();
                             } else {
                                 System.out.println("= Opção Inválida =");
@@ -86,10 +94,10 @@ public class Main {
                     break;
                 case "4":
                     if (tasks.size() == 0) {
-                        System.out.printf(" = Não existem tarefas para serem apagadas = \n - Digite 2 para adicionar uma tarefa ou...");
+                        System.out.printf("= Não existem tarefas para serem apagadas = \n- Digite 2 para adicionar uma tarefa ou...\n");
                     } else {
                         System.out.println();
-                        System.out.println("- Digite o numero da tarefa que deseja apagar.");
+                        System.out.println(" - Digite o numero da tarefa que deseja apagar.");
                         int n = scanner.nextInt() - 1;
                         scanner.nextLine();
                         if (n < 0 || n >= tasks.size()){
@@ -97,6 +105,7 @@ public class Main {
                         } else {
                             tasks.remove(n);
                             System.out.println("- Tarefa apagada com sucesso!");
+                            System.out.println();
                             System.out.println();
                         }
                         }
