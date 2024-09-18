@@ -1,3 +1,9 @@
+import javax.sound.sampled.spi.AudioFileWriter;
+import java.io.*;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,9 +17,19 @@ public class Main {
 
         // CONTINUAR AQUI criar um arquivo CSV e salvar as Tasks nele (tarefas_savefile.csv)
 
-        var option = "";//Variavel vazia onde posso colocar o scanner para o menu opções
-
         List<Task> tasks = new ArrayList<>(); //As listas de tarefas são salvas aqui;
+
+        Path saveFile = Path.of("tarefas_savefile.csv");
+        if (Files.exists(saveFile)){
+            try {
+                Files.readAllLines(saveFile);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        // Continuação = (vc abre um objeto do FileOutputStream, aponta no construtor para o endereço do seu arquivo. E faz um loop for-each ou similar pra escrever usando o método write do fileOutput)
+
+        var option = "";//Variavel vazia onde posso colocar o scanner para o menu opções
 
         while (option != "5") {
             Main.imprimeMenu();
