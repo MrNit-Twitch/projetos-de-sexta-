@@ -1,15 +1,10 @@
-import javax.sound.sampled.spi.AudioFileWriter;
 import java.io.*;
-import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\"- Olá, o que você gostaria de fazer?\""); // \ para adicionar simbolos como as aspas duplas em uma string.
@@ -19,14 +14,6 @@ public class Main {
 
         List<Task> tasks = new ArrayList<>(); //As listas de tarefas são salvas aqui;
 
-        Path saveFile = Path.of("tarefas_savefile.csv");
-        if (Files.exists(saveFile)){
-            try {
-                Files.readAllLines(saveFile);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
         // Continuação = (vc abre um objeto do FileOutputStream, aponta no construtor para o endereço do seu arquivo. E faz um loop for-each ou similar pra escrever usando o método write do fileOutput)
 
         var option = "";//Variavel vazia onde posso colocar o scanner para o menu opções
@@ -54,7 +41,7 @@ public class Main {
                     System.out.print("Digite o estado da tarefa: ");
                     var status = scanner.nextLine();
                     tasks.add(new Task(taskName,description,status));
-
+                    Main.salvaArquivo(taskName, description, status);
                     System.out.println();
                     System.out.println("- Tarefa adicionada a sua lista de tarefas.");
                     System.out.println();
@@ -148,5 +135,20 @@ public class Main {
         System.out.println("Opção 3: Editar Tarefa");
         System.out.println("Opção 4: Apagar tarefa");
         System.out.println("Opção 5: Encerrar Programa");
+    }
+
+    public static void salvaArquivo(String titulo, String descricao, String status) {
+        try {
+            FileWriter myWriter = new FileWriter("./file.csv");
+
+            myWriter.write(String.format("%s;%s;%s\n", titulo, descricao, status));
+
+            myWriter.close();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
