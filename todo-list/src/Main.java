@@ -9,25 +9,25 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\"- Olá, o que você gostaria de fazer?\""); // \ para adicionar simbolos como as aspas duplas em uma string.
         System.out.println();
 
-        // CONTINUAR AQUI criar um arquivo CSV e salvar as Tasks nele (tarefas_savefile.csv)
-
         List<Task> tasks = new ArrayList<>(); //As listas de tarefas são salvas aqui;
 
-        Path saveFile = Path.of("tarefas_savefile.csv");
-        if (Files.exists(saveFile)){
-            try {
-                Files.readAllLines(saveFile);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        /* Decidir o melhor local para colocar este metodo
+
+        List<List<String>> records = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("book.csv"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(COMMA_DELIMITER);
+                records.add(Arrays.asList(values));
             }
-        }
-        // Continuação = (vc abre um objeto do FileOutputStream, aponta no construtor para o endereço do seu arquivo. E faz um loop for-each ou similar pra escrever usando o método write do fileOutput)
+        }*/
 
         var option = "";//Variavel vazia onde posso colocar o scanner para o menu opções
 
@@ -41,7 +41,7 @@ public class Main {
                     } else {
                         System.out.println();
                         for (int i = 0; i < tasks.size(); i++) {
-                            System.out.println("TAREFA " + (i+1));
+                            System.out.println("TAREFA " + (i + 1));
                             System.out.println(tasks.get(i));
                         }
                     }
@@ -53,7 +53,9 @@ public class Main {
                     var description = scanner.nextLine();
                     System.out.print("Digite o estado da tarefa: ");
                     var status = scanner.nextLine();
-                    tasks.add(new Task(taskName,description,status));
+                    tasks.add(new Task(taskName, description, status));
+
+                    Main.salvaArquivo(taskName, description, status);
 
                     System.out.println();
                     System.out.println("- Tarefa adicionada a sua lista de tarefas.");
@@ -68,7 +70,7 @@ public class Main {
                         System.out.println("- Digite o numero da tarefa que deseja editar.");
                         int n = scanner.nextInt() - 1;
                         scanner.nextLine();
-                        if (n < 0 || n >= tasks.size()){
+                        if (n < 0 || n >= tasks.size()) {
                             System.out.println("= Opção Inválida =");
                         } else {
                             System.out.println("- Digite o número referente a opção que deseja alterar e pressione ENTER.");
@@ -77,7 +79,7 @@ public class Main {
                             System.out.println("Opção 2: Editar DESCRÇÃO");
                             System.out.println("Opção 3: Atualizar Status");
                             int n2 = scanner.nextInt();
-                            if (n2 == 1){
+                            if (n2 == 1) {
                                 System.out.println("Digite o novo nome para a tarefa");
                                 scanner.nextLine();
                                 String newTask = scanner.nextLine();
@@ -85,7 +87,7 @@ public class Main {
                                 System.out.println("= Tarefa editada com sucesso! =");
                                 System.out.println();
                                 System.out.println();
-                            } else if (n2 ==2) {
+                            } else if (n2 == 2) {
                                 System.out.println("Digite a nova descrição para a tarefa");
                                 scanner.nextLine();
                                 String newDescription = scanner.nextLine();
@@ -116,7 +118,7 @@ public class Main {
                         System.out.println(" - Digite o numero da tarefa que deseja apagar.");
                         int n = scanner.nextInt() - 1;
                         scanner.nextLine();
-                        if (n < 0 || n >= tasks.size()){
+                        if (n < 0 || n >= tasks.size()) {
                             System.out.println("= Opção Inválida =");
                         } else {
                             tasks.remove(n);
@@ -124,7 +126,7 @@ public class Main {
                             System.out.println();
                             System.out.println();
                         }
-                        }
+                    }
                     break;
                 case "5":
                     return;
@@ -148,5 +150,16 @@ public class Main {
         System.out.println("Opção 3: Editar Tarefa");
         System.out.println("Opção 4: Apagar tarefa");
         System.out.println("Opção 5: Encerrar Programa");
+    }
+
+    public static void salvaArquivo(String titulo, String descricao, String status) {
+        try (FileWriter myWriter = new FileWriter("./file.csv", true);){
+
+            myWriter.write(String.format("%s;%s;%s\n", titulo, descricao, status));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
